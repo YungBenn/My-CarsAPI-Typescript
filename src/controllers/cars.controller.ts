@@ -49,11 +49,18 @@ export const getCar = async (req: Request, res: Response) => {
 
   try {
     const car = await getCarById(id);
-    logger.info('here you go');
-    res.status(200).json(car);
+    if (!car) {
+      logger.error('Your car id is wrong');
+      res.status(404).json({
+        message: 'Your car id is wrong',
+      });
+    } else {
+      logger.info('Success to get a car');
+      res.status(200).json(car);
+    }
   } catch (error) {
     logger.error(error);
-    res.status(422).json({
+    res.status(404).json({
       message: 'Failed to get',
     });
   }
@@ -65,17 +72,17 @@ export const updateCar = async (req: Request, res: Response) => {
     params: { id },
   } = req;
 
-  const { value } = updateCarValidation(req.body);
-  try {
+  const { error, value } = updateCarValidation(req.body);
+  if (error) {
+    logger.error(error);
+    res.status(442).json({
+      message: 'Failed to update',
+    });
+  } else {
     await updateCarById(id, value);
     logger.info('car updated');
     res.status(200).json({
       message: 'Success update a car',
-    });
-  } catch (error) {
-    logger.error(error);
-    res.status(422).json({
-      message: 'Failed to update',
     });
   }
 };

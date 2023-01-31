@@ -14,7 +14,7 @@ export const addCarValidation = (payload: ICar) => {
 
 export const updateCarValidation = (payload: ICar) => {
   const schema = Joi.object({
-    name: Joi.string().required(),
+    name: Joi.string().allow('', null),
     brand: Joi.string().allow('', null),
     color: Joi.string().allow('', null),
     price: Joi.string().allow('', null),
