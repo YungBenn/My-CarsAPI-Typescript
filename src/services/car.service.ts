@@ -1,27 +1,25 @@
-import { Request, Response } from 'express';
 import { carModel } from '../models/cars.model';
 import ICar from '../types/cars.type';
-import { logger } from '../utils/logger';
 
-export const addCarToDB = async (payload: ICar) => {
+export async function addCarToDB(payload: ICar) {
   await carModel.create(payload);
-};
+}
 
-export const updateCarById = async (id: String, payload: ICar) => {
+export async function updateCarById(id: String, payload: ICar) {
   await carModel.findOneAndUpdate(
     {
       car_id: id,
     },
     { $set: payload },
   );
-};
+}
 
-export const deleteCarById = async (id: String) => {
+export async function deleteCarById(id: String) {
   await carModel.findOneAndDelete({
     car_id: id,
   });
-};
+}
 
-export const getCarById = async (id: String) => {
+export async function getCarById(id: String) {
   return await carModel.findOne({ car_id: id });
-};
+}

@@ -14,7 +14,7 @@ import {
 } from '../services/car.service';
 
 // Add new car
-export const addCar = async (req: Request, res: Response) => {
+export async function addCar(req: Request, res: Response) {
   req.body.car_id = uuidv4();
   const { value } = addCarValidation(req.body);
   try {
@@ -29,20 +29,20 @@ export const addCar = async (req: Request, res: Response) => {
       message: 'Failed to add new car',
     });
   }
-};
+}
 
 // get all cars
-export const getAllCars = (req: Request, res: Response) => {
+export async function getAllCars(req: Request, res: Response) {
   carModel.find((err, cars) => {
     if (err) {
       logger.error(err);
     }
     res.json(cars);
   });
-};
+}
 
 // get a car by id
-export const getCar = async (req: Request, res: Response) => {
+export async function getCar(req: Request, res: Response) {
   const {
     params: { id },
   } = req;
@@ -64,10 +64,10 @@ export const getCar = async (req: Request, res: Response) => {
       message: 'Failed to get',
     });
   }
-};
+}
 
 // update a car
-export const updateCar = async (req: Request, res: Response) => {
+export async function updateCar(req: Request, res: Response) {
   const {
     params: { id },
   } = req;
@@ -85,10 +85,10 @@ export const updateCar = async (req: Request, res: Response) => {
       message: 'Success update a car',
     });
   }
-};
+}
 
 // delete a car
-export const deleteCar = async (req: Request, res: Response) => {
+export async function deleteCar(req: Request, res: Response) {
   const {
     params: { id },
   } = req;
@@ -105,4 +105,4 @@ export const deleteCar = async (req: Request, res: Response) => {
       message: 'Failed to delete',
     });
   }
-};
+}

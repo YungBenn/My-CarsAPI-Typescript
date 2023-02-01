@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import ICar from '../types/cars.type';
 
-export const addCarValidation = (payload: ICar) => {
+export function addCarValidation(payload: ICar) {
   const schema = Joi.object({
     car_id: Joi.string().required(),
     name: Joi.string().required(),
@@ -10,9 +10,9 @@ export const addCarValidation = (payload: ICar) => {
     price: Joi.string().allow('', null),
   });
   return schema.validate(payload);
-};
+}
 
-export const updateCarValidation = (payload: ICar) => {
+export function updateCarValidation(payload: ICar) {
   const schema = Joi.object({
     name: Joi.string().allow('', null),
     brand: Joi.string().allow('', null),
@@ -20,4 +20,4 @@ export const updateCarValidation = (payload: ICar) => {
     price: Joi.string().allow('', null),
   });
   return schema.validate(payload);
-};
+}
