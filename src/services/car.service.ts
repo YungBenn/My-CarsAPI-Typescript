@@ -1,4 +1,4 @@
-import { carModel } from '../models/cars.model';
+import { carModel } from '../models/car.model';
 import ICar from '../types/cars.type';
 
 export async function addCarToDB(payload: ICar) {

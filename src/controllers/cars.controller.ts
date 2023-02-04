@@ -1,7 +1,7 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { logger } from '../utils/logger';
-import { carModel } from '../models/cars.model';
+import { carModel } from '../models/car.model';
 import {
   addCarValidation,
   updateCarValidation,
@@ -33,12 +33,23 @@ export async function addCar(req: Request, res: Response) {
 
 // get all cars
 export async function getAllCars(req: Request, res: Response) {
-  carModel.find((err, cars) => {
-    if (err) {
-      logger.error(err);
-    }
-    res.json(cars);
-  });
+  if (req.query) {
+    const query = req.query;
+    carModel.find(query, (err: any, data: any) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(data);
+      }
+    });
+  } else {
+    carModel.find((err, cars) => {
+      if (err) {
+        logger.error(err);
+      }
+      res.json(cars);
+    });
+  }
 }
 
 // get a car by id
@@ -105,4 +116,8 @@ export async function deleteCar(req: Request, res: Response) {
       message: 'Failed to delete',
     });
   }
+}
+
+function textRegex(text: any) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 }
