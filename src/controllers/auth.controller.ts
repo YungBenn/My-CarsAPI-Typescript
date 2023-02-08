@@ -14,7 +14,7 @@ export async function registerUser(req: Request, res: Response) {
   req.body.user_id = uuidv4();
   const { value } = registerValidation(req.body);
   try {
-    value.password = `${hashing(value.password)}`;
+    value.password = hashing(value.password);
     await createUser(value);
     logger.info('New user added');
     res.status(201).json({
