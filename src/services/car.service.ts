@@ -1,5 +1,5 @@
 import { carModel } from '../models/car.model';
-import ICar from '../types/cars.type';
+import ICar from '../types/car.type';
 
 export async function addCarToDB(payload: ICar) {
   await carModel.create(payload);

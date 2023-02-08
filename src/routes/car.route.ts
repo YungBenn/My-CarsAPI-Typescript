@@ -6,11 +6,12 @@ import {
   getCar,
   updateCar,
 } from '../controllers/cars.controller';
+import { requireUser } from '../middleware/auth';
 
 export const CarsRouter: Router = Router();
 
 CarsRouter.get('/', getAllCars);
 CarsRouter.get('/:id', getCar);
-CarsRouter.post('/', addCar);
-CarsRouter.put('/:id', updateCar);
-CarsRouter.delete('/:id', deleteCar);
+CarsRouter.post('/', requireUser, addCar);
+CarsRouter.put('/:id', requireUser, updateCar);
+CarsRouter.delete('/:id', requireUser, deleteCar);

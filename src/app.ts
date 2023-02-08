@@ -2,10 +2,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 import express, { Application } from 'express';
 import { connect } from './utils/connect';
-import { CarsRouter } from './routes/cars.route';
+import { CarsRouter } from './routes/car.route';
 import { logger } from './utils/logger';
 import { error } from './middleware/404';
-import { carModel } from './models/car.model';
+import { UserRouter } from './routes/auth.route';
+import deserializedToken from './middleware/deserializedToken';
 
 const app: Application = express();
 const port = process.env.PORT || 3000;
@@ -13,8 +14,11 @@ const port = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+app.use(deserializedToken);
+
 // routes
 app.use('/cars', CarsRouter);
+app.use('/user', UserRouter);
 
 // 404 handle
 app.use(error);

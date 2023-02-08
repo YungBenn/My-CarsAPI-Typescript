@@ -5,7 +5,7 @@ import { carModel } from '../models/car.model';
 import {
   addCarValidation,
   updateCarValidation,
-} from '../middleware/cars.validation';
+} from '../middleware/car.validation';
 import {
   addCarToDB,
   deleteCarById,

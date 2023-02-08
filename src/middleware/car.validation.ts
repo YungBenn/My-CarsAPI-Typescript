@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import ICar from '../types/cars.type';
+import ICar from '../types/car.type';
 
 export function addCarValidation(payload: ICar) {
   const schema = Joi.object({
