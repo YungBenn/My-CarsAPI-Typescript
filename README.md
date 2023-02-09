@@ -39,7 +39,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd My-CarsAPI-Typescript
+  cd my-project
 ```
 
 Install dependencies
