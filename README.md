@@ -1,3 +1,4 @@
+
 # My-CarsAPI-Typescript
 
 A Car API with authentication  
@@ -5,7 +6,11 @@ A Car API with authentication
 
 ## Features
 
-- Add Car
+#### User
+- Register
+- Login
+- Refresh Session
+#### Cars
 - Get Cars
 - Get Cars by specify data 
 - Get Car By Id
@@ -22,4 +27,30 @@ A Car API with authentication
 **Database:** MongoDB
 
 **Authentication:** JWT
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/YungBenn/My-CarsAPI-Typescript.git
+```
+
+Go to the project directory
+
+```bash
+  cd My-CarsAPI-Typescript
+```
+
+Install dependencies
+
+```bash
+  npm i
+```
+
+Start the server
+
+```bash
+  npm run start
+```
 
