@@ -4,8 +4,7 @@ import { logger } from './logger';
 
 export async function connect() {
   mongoose.set('strictQuery', false);
-  const db =
-    <string>process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/carsDB';
+  const db = <string>process.env.MONGODB_URI;
 
   try {
     await mongoose.connect(db);

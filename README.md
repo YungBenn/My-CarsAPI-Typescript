@@ -54,3 +54,16 @@ Start the server
   npm run start
 ```
 
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`PORT`
+
+`MONGODB_URI`
+
+`PUBLIC_KEY`
+
+`PRIVATE_KEY`
+
