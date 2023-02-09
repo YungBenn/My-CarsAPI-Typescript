@@ -33,23 +33,18 @@ export async function addCar(req: Request, res: Response) {
 
 // get all cars
 export async function getAllCars(req: Request, res: Response) {
-  if (req.query) {
-    const query = req.query;
-    carModel.find(query, (err: any, data: any) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.json(data);
-      }
-    });
-  } else {
-    carModel.find((err, cars) => {
-      if (err) {
-        logger.error(err);
-      }
-      res.json(cars);
-    });
-  }
+  const query = req.query;
+  carModel.find(query, (err: any, data: any) => {
+    if (err) {
+      logger.error('error');
+    } else {
+      logger.info('Success to get data');
+      res.status(200).json({
+        status: 200,
+        data: data,
+      });
+    }
+  });
 }
 
 // get a car by id
@@ -62,12 +57,18 @@ export async function getCar(req: Request, res: Response) {
     const car = await getCarById(id);
     if (!car) {
       logger.error('Your car id is wrong');
-      res.status(404).json({
+      res.status(200).json({
+        status: 200,
         message: 'Your car id is wrong',
+        data: car,
       });
     } else {
       logger.info('Success to get a car');
-      res.status(200).json(car);
+      res.status(200).json({
+        status: 200,
+        message: 'Data found',
+        data: car,
+      });
     }
   } catch (error) {
     logger.error(error);

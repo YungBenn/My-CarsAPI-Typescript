@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import express, { Application } from 'express';
+import cors from 'cors';
 import { connect } from './utils/connect';
 import { CarsRouter } from './routes/car.route';
 import { logger } from './utils/logger';
@@ -13,6 +14,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cors());
 
 app.use(deserializedToken);
 
