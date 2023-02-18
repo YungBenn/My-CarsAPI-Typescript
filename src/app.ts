@@ -21,7 +21,9 @@ app.use(deserializedToken);
 // routes
 app.use('/cars', CarsRouter);
 app.use('/user', UserRouter);
-
+app.use('/', (req, res) => {
+  res.redirect('/cars');
+});
 // 404 handle
 app.use(error);
 
