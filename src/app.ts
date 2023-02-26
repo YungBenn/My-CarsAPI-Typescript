@@ -8,6 +8,7 @@ import { logger } from './utils/logger';
 import { error } from './middleware/404';
 import { UserRouter } from './routes/auth.route';
 import deserializedToken from './middleware/deserializedToken';
+import { limiter } from './middleware/rateLimit';
 
 const app: Application = express();
 const port = process.env.PORT || 3000;
@@ -15,6 +16,7 @@ const port = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
+app.use(limiter);
 
 app.use(deserializedToken);
 
