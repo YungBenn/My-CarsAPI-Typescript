@@ -39,7 +39,7 @@ export async function createSession(req: Request, res: Response) {
         message: 'Invalid email or password',
       });
     }
-    const accessToken = signJWT({ ...user }, { expiresIn: '1h' });
+    const accessToken = signJWT({ ...user }, { expiresIn: '6h' });
     const refreshToken = signJWT({ ...user }, { expiresIn: '1d' });
     return res.status(200).send({
       message: 'Success register user',
