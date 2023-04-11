@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import { logger } from '../utils/logger';
+import logger from '../utils/logger';
 import { checkPassword, hashing } from '../utils/hashing';
 import { createUser, findUserByEmail } from '../services/auth.service';
 import { signJWT, verifyJWT } from '../utils/jwt';

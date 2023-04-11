@@ -1,10 +1,11 @@
 import mongoose from 'mongoose';
 import '../models/car.model';
-import { logger } from './logger';
+import logger from './logger';
+import config from '../config/env';
 
-export async function connect() {
+async function connect() {
   mongoose.set('strictQuery', false);
-  const db = <string>process.env.MONGODB_URI;
+  const db = <string>config.db;
 
   try {
     await mongoose.connect(db);
@@ -13,3 +14,5 @@ export async function connect() {
     logger.error(err);
   }
 }
+
+export default connect;

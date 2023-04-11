@@ -2,16 +2,17 @@ import dotenv from 'dotenv';
 dotenv.config();
 import express, { Application } from 'express';
 import cors from 'cors';
-import { connect } from './utils/connect';
-import { CarsRouter } from './routes/car.route';
-import { logger } from './utils/logger';
-import { error } from './middleware/404';
-import { UserRouter } from './routes/auth.route';
+import connect from './utils/connect';
+import CarsRouter from './routes/car.route';
+import logger from './utils/logger';
+import error from './middleware/404';
+import UserRouter from './routes/auth.route';
 import deserializedToken from './middleware/deserializedToken';
-import { limiter } from './middleware/rateLimit';
+import limiter from './middleware/rateLimit';
+import config from './config/env';
 
 const app: Application = express();
-const port = process.env.PORT || 3000;
+const port = config.port || 3000;
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
