@@ -1,0 +1,22 @@
+version: "3"
+services:
+  # api service
+  my-carsapi-typescript:
+    container_name: my-carsapi-typescript
+    image: rubenadi/my-carsapi-typescript
+    restart: always
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      MONGODB_URI: "mongodb://mongo:27017/mycars-api"
+    links:
+      - mongo
+
+  # mongodb service
+  mongo:
+    container_name: mongo
+    image: mongo:latest
+    restart: always
+    volumes:
+      - ./data:/data/db
